@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/css">
+      #original {
+        font-family: SBL Biblit;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col items-center">
+    <div
+      id="content"
+      class="bg-white mt-44 p-8 rounded-lg shadow-md max-w-lg w-full"
+    >
+      <div class="flex flex-row items-center justify-between mb-4 w-full">
+        <button
+          id="prev-button"
+          class="bg-gray-500 text-white w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-600 active:bg-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-chevron-left"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <h1 class="text-3xl font-bold">Feedback Form</h1>
+        <button
+          id="next-button"
+          class="bg-gray-500 text-white w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-600 active:bg-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-chevron-right"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div id="text-content" class="mb-6">
+        <div class="flex flex-row items-center">
+          <div id="reference" class="grow"></div>
+          <div
+            id="exegetical-significance"
+            class="rounded-full flex items-center justify-center w-10 h-10 ml-1 border-2 border-gray-200 font-bold cursor-pointer"
+            title="Exegetical Significance"
+          ></div>
+          <div
+            id="literalness"
+            class="rounded-full flex items-center justify-center w-10 h-10 ml-1 border-2 border-gray-200 font-bold cursor-pointer"
+            title="Literalness"
+          ></div>
+          <div
+            id="importance-metric"
+            class="rounded-full flex items-center justify-center w-10 h-10 ml-1 border-2 border-gray-200 font-bold cursor-pointer"
+            title="Importance /100"
+          ></div>
+        </div>
+
+        <div class="mb-2 flex flex-row items-center font-bold">
+          <div id="original" class="mr-6 text-2xl"></div>
+          <div id="literal-rendering" class="text-xl"></div>
+        </div>
+
+        <div id="explanation"></div>
+      </div>
+      <div class="mb-4">
+        <label for="rating" class="block text-sm font-medium text-gray-700 mb-1"
+          >Rating:</label
+        >
+        <div class="flex space-x-2">
+          <button
+            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            data-value="1"
+          >
+            1
+          </button>
+          <button
+            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            data-value="2"
+          >
+            2
+          </button>
+          <button
+            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            data-value="3"
+          >
+            3
+          </button>
+          <button
+            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            data-value="4"
+          >
+            4
+          </button>
+          <button
+            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            data-value="5"
+          >
+            5
+          </button>
+        </div>
+      </div>
+      <button
+        id="submit-btn"
+        class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+      >
+        Submit
+      </button>
+    </div>
+
+    <script>
+      let currentNote = 0;
+      const notes = [
+        {
+          id: 1,
+          ref: "Esther 1:1",
+          original: "וַיְהִ֖י",
+          literal_rendering: "And it was",
+          explanation:
+            "This word often starts stories in Hebrew. It shows something important is about to happen. Many translations don't use 'and it was' because it sounds odd in their languages. Instead, they might say 'This happened' or 'There was'. The word helps readers know a new part of the story is starting.",
+          exegetical_significance: 3,
+          literalness: 2,
+        },
+        {
+          id: 2,
+          ref: "Esther 1:1",
+          original: "בִּימֵ֣י",
+          literal_rendering: "in the days of",
+          explanation:
+            "This phrase means 'during the time of' or 'when someone was alive'. It's a way to say when something happened. Some languages might not use 'days' to talk about a time period. They might say 'when' or 'during the rule of' instead. The phrase helps readers know when the story took place.",
+          exegetical_significance: 4,
+          literalness: 5,
+        },
+        {
+          id: 3,
+          ref: "Esther 1:1",
+          original: "הַמֹּלֵךְ֙",
+          literal_rendering: "the one reigning",
+          explanation:
+            "This word describes the king's action of ruling. Some translations just say 'who ruled' or use the word 'king'. The original shows that the king was actively ruling at that time. If your language has a way to show ongoing action, you might use it here.",
+          exegetical_significance: 3,
+          literalness: 7,
+        },
+        {
+          id: 4,
+          ref: "Esther 1:1",
+          original: "מֵהֹ֣דּוּ וְעַד־כּ֔וּשׁ",
+          literal_rendering: "from India and until Cush",
+          explanation:
+            "This phrase shows how big the king's kingdom was. It went from one place to another far away. Some translations say 'India to Ethiopia' because Cush is an old name for that area. If your readers don't know these places, you might need to explain them or use places they do know to show it was a big area.",
+          exegetical_significance: 6,
+          literalness: 8,
+        },
+        {
+          id: 5,
+          ref: "Esther 1:2",
+          original: "כְּשֶׁ֣בֶת",
+          literal_rendering: "when sitting",
+          explanation:
+            'This word is often translated as "reigned" or "sat on his throne". It means the king was ruling. The idea of sitting on a throne means having power as a king. Translators might use words that mean "rule" or "be in charge" in their language. This helps readers understand the king\'s position better than just "sit".',
+          exegetical_significance: 7,
+          literalness: 5,
+        },
+        {
+          id: 6,
+          ref: "Esther 1:2",
+          original: "כִּסֵּ֣א מַלְכוּתֹ֔ו",
+          literal_rendering: "throne of his kingdom",
+          explanation:
+            'This phrase is often translated as "royal throne". It means the special chair a king sits on. It shows his power. In some languages, kings might not use thrones. Translators might use words for a special place or object that shows leadership in their culture. The key idea is that this shows the king\'s authority.',
+          exegetical_significance: 6,
+          literalness: 7,
+        },
+        {
+          id: 7,
+          ref: "Esther 1:2",
+          original: "הַבִּירָֽה",
+          literal_rendering: "the fortress",
+          explanation:
+            'This word is often translated as "citadel" or "capital". It means a strong, important building in the city. It\'s where the king lived and ruled from. Translators might use words for an important government building or protected place in their language. The main idea is that it\'s a special, secure place for the king.',
+          exegetical_significance: 5,
+          literalness: 6,
+        },
+        {
+          id: 8,
+          ref: "Esther 1:3",
+          original: "עָשָׂ֣ה מִשְׁתֶּ֔ה",
+          literal_rendering: "made a feast",
+          explanation:
+            'This phrase is often translated as "gave a banquet" or "held a feast". The word for "made" here means to create or do something. In this case, it means to organize or host a big meal. Translators might choose words that mean "organize" or "host" instead of "make" to be clearer. The word for "feast" means a big, special meal. Translators should use a word in their language that means a big, important meal for many people.',
+          exegetical_significance: 3,
+          literalness: 7,
+        },
+        {
+          id: 9,
+          ref: "Esther 1:3",
+          original: "לְכָל־שָׂרָ֖יו וַעֲבָדָ֑יו",
+          literal_rendering: "for all his princes and his servants",
+          explanation:
+            'This phrase is often translated as "for all his nobles and officials". The word for "princes" here means important people, not sons of kings. The word for "servants" means people who work for the king. Translators should use words that mean important government workers and people who serve the king. They should not use words that only mean royal family members or house servants.',
+          exegetical_significance: 5,
+          literalness: 6,
+        },
+        {
+          id: 10,
+          ref: "Esther 1:3",
+          original: "חֵ֣יל",
+          literal_rendering: "army",
+          explanation:
+            'This word is sometimes translated as "military leaders" or "army officers". It can mean the whole army or just the leaders. Translators should choose based on what makes most sense in the story. If they think it means leaders, they should use a word for military commanders, not regular soldiers.',
+          exegetical_significance: 4,
+          literalness: 8,
+        },
+        {
+          id: 11,
+          ref: "Esther 1:3",
+          original: "הַֽפַּרְתְּמִ֛ים",
+          literal_rendering: "the nobles",
+          explanation:
+            'This word is sometimes translated as "princes" or "important people". It means people of high rank. Translators should use a word that means very important people in their society, not just any rich person. It should be clear these are people with power and influence.',
+          exegetical_significance: 4,
+          literalness: 7,
+        },
+        {
+          id: 12,
+          ref: "Esther 1:3",
+          original: "לְפָנָֽיו",
+          literal_rendering: "before him",
+          explanation:
+            'This phrase is often translated as "were present" or "were there". It literally means "in front of his face". This is a way of saying people were in the same place as the king. Translators should use a phrase that means people were with the king or in his presence, not just standing in front of him.',
+          exegetical_significance: 2,
+          literalness: 5,
+        },
+        {
+          id: 13,
+          ref: "Esther 1:4",
+          original: "בְּהַרְאֹתֹ֗ו",
+          literal_rendering: "in his showing",
+          explanation:
+            'This word is often translated as "he showed" or "he displayed." The original is a verb form that means "to show" with a prefix meaning "in." Translators may choose to use a simple past tense verb instead of a more literal "in his showing." This is because many languages don\'t have this exact verb form. Using a simple verb makes the meaning clearer.',
+          exegetical_significance: 3,
+          literalness: 5,
+        },
+        {
+          id: 14,
+          ref: "Esther 1:4",
+          original: "עֹ֨שֶׁר֙",
+          literal_rendering: "riches",
+          explanation:
+            'This word means "wealth" or "riches." Some translations use "vast wealth" or "great wealth" to emphasize how much there was. Translators might choose to add words like "vast" or "great" to help readers understand that this was an impressive amount of wealth. In the original culture, showing off wealth was a way to show power.',
+          exegetical_significance: 5,
+          literalness: 8,
+        },
+        {
+          id: 15,
+          ref: "Esther 1:4",
+          original: "כְּבֹ֣וד",
+          literal_rendering: "glory",
+          explanation:
+            'This word means "glory" or "honor." It\'s often used to describe the impressive nature of something. Some translations use words like "splendor" or "majesty" instead. Translators might choose different words to capture the idea of something impressive and praiseworthy. The concept of "glory" can be hard to translate in some languages.',
+          exegetical_significance: 7,
+          literalness: 7,
+        },
+        {
+          id: 16,
+          ref: "Esther 1:4",
+          original: "תִּפְאֶ֖רֶת",
+          literal_rendering: "beauty",
+          explanation:
+            'This word means "beauty" or "splendor." It\'s often translated as "splendor" or "pomp." Translators might choose words that describe impressive appearance or display. In this context, it\'s about the king showing off how great he is. Some languages might need to use a phrase like "how great he looked" to capture this idea.',
+          exegetical_significance: 6,
+          literalness: 6,
+        },
+        {
+          id: 17,
+          ref: "Esther 1:4",
+          original: "יָמִ֣ים רַבִּ֔ים",
+          literal_rendering: "many days",
+          explanation:
+            'This phrase means "many days." Some translations keep it literal, while others use phrases like "for a long time" or "for a lengthy period." Translators might choose to use a phrase that means "a long time" in their language, especially if "many days" sounds odd. The point is that this event lasted a very long time.',
+          exegetical_significance: 4,
+          literalness: 8,
+        },
+        {
+          id: 18,
+          ref: "Esther 1:5",
+          original: "וּבִמְלֹ֣ואת",
+          literal_rendering: "And in the fullness of",
+          explanation:
+            'This phrase means "when these days were over". It\'s a way to say time has passed. In many languages, you can\'t say time is "full". Instead, you might say "when these days finished" or "after these days". The idea is that a set time has ended.',
+          exegetical_significance: 3,
+          literalness: 4,
+        },
+        {
+          id: 19,
+          ref: "Esther 1:5",
+          original: "הַנִּמְצְאִים֩",
+          literal_rendering: "the ones being found",
+          explanation:
+            'This word is translated as "present" or "who were in". It literally means "being found". But in many languages, you can\'t say people are "found" in a place. It\'s better to say they are "there" or "present". The idea is that these people were in that place at that time.',
+          exegetical_significance: 2,
+          literalness: 5,
+        },
+        {
+          id: 20,
+          ref: "Esther 1:5",
+          original: "לְמִגָּ֧דֹול וְעַד־קָטָ֛ן",
+          literal_rendering: "from great and until small",
+          explanation:
+            'This phrase means "from the greatest to the least" or "both great and small". It\'s a way to say "everyone". In many languages, you can\'t use "great" and "small" for people\'s importance. You might say "important people and ordinary people" or "all kinds of people". The idea is that everyone was included, no matter how important they were.',
+          exegetical_significance: 6,
+          literalness: 6,
+        },
+        {
+          id: 21,
+          ref: "Esther 1:5",
+          original: "בַּחֲצַ֕ר",
+          literal_rendering: "in the court",
+          explanation:
+            'This word is often translated as "courtyard" or "enclosed garden". A "court" in this context is an open area surrounded by buildings. In many languages, there\'s no word for this. You might say "open area near the palace" or "garden area of the palace". The idea is that it was an outdoor space that was part of the palace grounds.',
+          exegetical_significance: 4,
+          literalness: 7,
+        },
+        {
+          id: 22,
+          ref: "Esther 1:6",
+          original: "חוּר",
+          literal_rendering: "white",
+          explanation:
+            'This word means "white" but some translations render it as "cotton" or "linen". This is because white fabric was often made of cotton or linen. Translators may choose to specify the material rather than the color to give readers a clearer picture of the curtains. However, this loses the emphasis on the color, which may have symbolic meaning. Consider your readers\' cultural context when deciding whether to translate the color or the material.',
+          exegetical_significance: 4,
+          literalness: 6,
+        },
+        {
+          id: 23,
+          ref: "Esther 1:6",
+          original: "כַּרְפַּס",
+          literal_rendering: "fine linen",
+          explanation:
+            'This word refers to a type of fine fabric. Some translations render it as "green" based on a Persian loanword meaning. Others translate it as "cotton". The exact meaning is uncertain. Translators should research the term and choose a rendering that conveys the idea of a luxurious fabric to their readers. Consider using a general term for fine cloth if there\'s no clear equivalent in your language.',
+          exegetical_significance: 3,
+          literalness: 5,
+        },
+        {
+          id: 24,
+          ref: "Esther 1:6",
+          original: "אָחוּז",
+          literal_rendering: "fastened",
+          explanation:
+            'This word means "grasped" or "held". Translations often render it as "fastened" or "hung" to describe how the curtains were attached. The idea is that the cords held the curtains in place. Use a word in your language that clearly shows how the curtains were secured, even if it\'s not a literal translation of "grasped".',
+          exegetical_significance: 2,
+          literalness: 7,
+        },
+        {
+          id: 25,
+          ref: "Esther 1:6",
+          original: "גְּלִילֵי",
+          literal_rendering: "rods",
+          explanation:
+            'This word means "cylinders" or "rods". Some translations render it as "rings". The idea is of a cylindrical object used to hang the curtains. Choose a word in your language that describes a rod-like object used for hanging curtains, even if it\'s not an exact match for "cylinder".',
+          exegetical_significance: 2,
+          literalness: 8,
+        },
+        {
+          id: 26,
+          ref: "Esther 1:6",
+          original: "מִטֹּות",
+          literal_rendering: "beds",
+          explanation:
+            'This word means "beds" but is often translated as "couches". In ancient times, people reclined on beds during feasts. Modern readers might not understand this custom. Use a word in your language that conveys the idea of a piece of furniture for reclining at a feast, even if it\'s not the usual word for "bed".',
+          exegetical_significance: 5,
+          literalness: 6,
+        },
+        {
+          id: 27,
+          ref: "Esther 1:6",
+          original: "רִצְפַת",
+          literal_rendering: "pavement",
+          explanation:
+            'This word refers to a floor or pavement. Some translations specify "mosaic pavement" to clarify the type of floor. The original doesn\'t say "mosaic" but implies a decorated floor. Consider whether your readers will understand what kind of floor this was. You may need to add a word like "decorated" or "patterned" to convey the idea of a fancy floor.',
+          exegetical_significance: 3,
+          literalness: 8,
+        },
+        {
+          id: 28,
+          ref: "Esther 1:6",
+          original: "בַּהַט",
+          literal_rendering: "alabaster",
+          explanation:
+            'This word refers to a type of stone, possibly alabaster. Some translations render it as "porphyry" or other specific stones. The exact type of stone is less important than conveying that it was a valuable material. Use a word in your language for a precious stone used in building, even if it\'s not the exact equivalent of alabaster.',
+          exegetical_significance: 2,
+          literalness: 7,
+        },
+        {
+          id: 29,
+          ref: "Esther 1:6",
+          original: "דַר",
+          literal_rendering: "mother-of-pearl",
+          explanation:
+            "This word likely refers to mother-of-pearl or a similar pearly substance. Some translations render it as specific types of stone. The key idea is that it was a valuable, decorative material. If your language doesn't have a word for mother-of-pearl, consider using a term for a shiny, valuable substance used in decoration.",
+          exegetical_significance: 2,
+          literalness: 8,
+        },
+        {
+          id: 30,
+          ref: "Esther 1:6",
+          original: "סֹחָרֶת",
+          literal_rendering: "black marble",
+          explanation:
+            'The meaning of this word is uncertain. Some translations render it as "colored stones" or "other costly stones". The idea is that it was another valuable material used in the pavement. Since we\'re not sure of the exact meaning, it\'s okay to use a general term for valuable building stones in your language.',
+          exegetical_significance: 2,
+          literalness: 5,
+        },
+        {
+          id: 31,
+          ref: "Esther 1:7",
+          original: "כְּיַ֥ד",
+          literal_rendering: "according to the hand of",
+          explanation:
+            'This phrase is often translated non-literally because "hand" is used figuratively to mean "power" or "generosity." In many languages, using "hand" this way would be confusing. Instead, translators might say "according to the king\'s generosity" or "as the king desired." This idiom shows the king\'s control and abundance. The idea is that the king\'s power and wealth allowed him to provide lavishly.',
+          exegetical_significance: 7,
+          literalness: 3,
+        },
+        {
+          id: 32,
+          ref: "Esther 1:7",
+          original: "רָ֖ב",
+          literal_rendering: "much, great",
+          explanation:
+            'This word is often translated as "abundant" or "lavished" to emphasize the large quantity of wine. In some languages, simply saying "much wine" might not fully convey the idea of excess and luxury. Translators might use words that mean "overflowing" or "more than enough" to capture this sense of abundance. The large amount of wine shows the king\'s wealth and generosity.',
+          exegetical_significance: 6,
+          literalness: 5,
+        },
+        {
+          id: 33,
+          ref: "Esther 1:7",
+          original: "מִכֵּלִ֣ים שֹׁונִ֑ים",
+          literal_rendering: "from vessels different",
+          explanation:
+            'This phrase is often translated to emphasize the variety of vessels, not just that they were different. Translations like "of many designs" or "all of which differed from one another" try to show that each cup was unique. In some languages, simply saying "different vessels" might not fully convey this idea. Translators might need to say something like "no two cups were the same" to clearly express this concept. The variety of vessels shows the king\'s wealth and attention to detail in the feast.',
+          exegetical_significance: 5,
+          literalness: 6,
+        },
+        {
+          id: 34,
+          ref: "Esther 1:8",
+          original: "כַדָּ֖ת",
+          literal_rendering: "according to the law",
+          explanation:
+            'This phrase is often translated as "by edict" or "by decree." It means the drinking was done according to rules set by the king. Translators might choose a non-literal translation to make it clear that this refers to the king\'s orders about drinking, not general laws. They could say something like "as the king ordered" or "following the king\'s rules."',
+          exegetical_significance: 7,
+          literalness: 6,
+        },
+        {
+          id: 35,
+          ref: "Esther 1:8",
+          original: "אֵ֣ין אֹנֵ֑ס",
+          literal_rendering: "there is no compulsion",
+          explanation:
+            'This phrase means no one was forced to drink. Some translations say "without restraint" or "no limits," which might confuse readers. It\'s better to say clearly that no one had to drink if they didn\'t want to. Translators should make sure readers understand this was about freedom of choice, not unlimited drinking.',
+          exegetical_significance: 9,
+          literalness: 8,
+        },
+        {
+          id: 36,
+          ref: "Esther 1:8",
+          original: "יִסַּ֣ד",
+          literal_rendering: "founded",
+          explanation:
+            'This word usually means "to establish" or "to found," but here it means the king gave an order. Translators might say "commanded" or "instructed" to make the meaning clear. The idea is that the king set up this rule, like founding a new custom.',
+          exegetical_significance: 6,
+          literalness: 4,
+        },
+        {
+          id: 37,
+          ref: "Esther 1:8",
+          original: "רַ֣ב בֵּיתֹ֔ו",
+          literal_rendering: "great ones of his house",
+          explanation:
+            'This phrase refers to important people in the king\'s palace. Translations often say "officials" or "staff." Translators should use a term that shows these were high-ranking servants or managers in the palace. They could say "palace leaders" or "chief servants" to make it clear.',
+          exegetical_significance: 5,
+          literalness: 5,
+        },
+        {
+          id: 38,
+          ref: "Esther 1:8",
+          original: "כִּרְצֹ֥ון אִישׁ־וָאִֽישׁ",
+          literal_rendering: "according to the desire of each man",
+          explanation:
+            'This phrase means everyone could drink as much as they wanted. Some translations say "as each man desired" or "what he wished." Translators should make it clear this was about personal choice. They could say "whatever amount each person wanted" to be very clear.',
+          exegetical_significance: 8,
+          literalness: 7,
+        },
+        {
+          id: 39,
+          ref: "Esther 1:9",
+          original: "עָשְׂתָ֖ה",
+          literal_rendering: "made",
+          explanation:
+            'The word translated as "gave" or "organized" literally means "made". Many translations use words like "gave" or "organized" because in English, we don\'t usually say someone "made" a feast or banquet. We say they "gave" or "organized" one. This shows how different languages express the idea of hosting an event. When translating, it\'s important to use words that sound natural in your language for hosting a party or feast.',
+          exegetical_significance: 2,
+          literalness: 4,
+        },
+        {
+          id: 40,
+          ref: "Esther 1:9",
+          original: "מִשְׁתֵּ֣ה",
+          literal_rendering: "drinking feast",
+          explanation:
+            'This word is often translated as "banquet" or "feast". It comes from a root word meaning "to drink". In the culture of that time, a big party always included lots of drinking. So this word came to mean any big party with food and drink. When translating, think about what word in your language best describes a big, fancy party with lots of food and drink.',
+          exegetical_significance: 3,
+          literalness: 6,
+        },
+        {
+          id: 41,
+          ref: "Esther 1:9",
+          original: "בֵּ֚ית הַמַּלְכ֔וּת",
+          literal_rendering: "house of the kingdom",
+          explanation:
+            'This phrase is often translated as "royal palace". The word "house" here doesn\'t mean a small home, but a large building for the king. "Kingdom" refers to the king\'s rule. Together, they mean the official building where the king lives and rules. When translating, use words that describe the big, important building where your country\'s leader lives and works.',
+          exegetical_significance: 4,
+          literalness: 5,
+        },
+        {
+          id: 42,
+          ref: "Esther 1:10",
+          original: "כְּטֹ֥וב לֵב־הַמֶּ֖לֶךְ בַּיָּ֑יִן",
+          literal_rendering: "when the heart of the king was good with wine",
+          explanation:
+            'This phrase is often translated non-literally. The "heart" in Hebrew often means the mind or inner self. "Good" here means merry or happy. The phrase means the king was in a good mood from drinking wine. Translators should be careful not to imply the king was drunk. The phrase is an idiom about feeling happy from wine. In many languages, you may need to say something like "when the king felt happy because of the wine he drank."',
+          exegetical_significance: 7,
+          literalness: 3,
+        },
+        {
+          id: 43,
+          ref: "Esther 1:10",
+          original: "הַסָּ֣רִיסִ֔ים",
+          literal_rendering: "eunuchs",
+          explanation:
+            'This word means men who cannot have children. They often worked for kings. Some translations use "officials" instead of "eunuchs." This is because the word can mean any important servant of the king. Also, some cultures may not understand what eunuchs are. Translators should think about their readers. If "eunuchs" will confuse people, it may be better to say "important servants" or "officials."',
+          exegetical_significance: 6,
+          literalness: 8,
+        },
+        {
+          id: 44,
+          ref: "Esther 1:10",
+          original: "הַמְשָׁ֣רְתִ֔ים אֶת־פְּנֵ֖י הַמֶּ֥לֶךְ",
+          literal_rendering: "who served the face of the king",
+          explanation:
+            'This phrase means the eunuchs served in the king\'s presence. The "face" here means being close to the king. Many languages don\'t use "face" this way. Translators may need to say "who served close to the king" or "who worked directly for the king." The key idea is that these men had important jobs serving the king personally.',
+          exegetical_significance: 5,
+          literalness: 4,
+        },
+        {
+          id: 45,
+          ref: "Esther 1:11",
+          original: "לְהַרְאֹ֨ות",
+          literal_rendering: "to cause to see",
+          explanation:
+            'This word is often translated as "to show" in English. The original means "to cause to see." Many languages may not have a single word for "show." Instead, they might say "make see" or "let see." This reflects the original meaning better. Translators should think about how people in their language talk about showing things to others.',
+          exegetical_significance: 3,
+          literalness: 7,
+        },
+        {
+          id: 46,
+          ref: "Esther 1:11",
+          original: "טֹובַ֥ת מַרְאֶ֖ה",
+          literal_rendering: "good of appearance",
+          explanation:
+            'This phrase is often translated as "beautiful" or "lovely to look at." The original means "good of appearance." Many languages may not use "good" to mean "beautiful." Translators should think about how people in their language describe someone who looks nice. They might say "pleasing to the eye" or use words that mean "attractive."',
+          exegetical_significance: 4,
+          literalness: 6,
+        },
+        {
+          id: 47,
+          ref: "Esther 1:11",
+          original: "בְּכֶ֣תֶר מַלְכ֑וּת",
+          literal_rendering: "in crown of royalty",
+          explanation:
+            'This phrase is often translated as "royal crown." The original means "crown of royalty." Many languages might not use this exact phrase. Translators should think about how people in their language talk about the special hat a king or queen wears. They might say "king\'s hat" or use a word that means "symbol of power."',
+          exegetical_significance: 5,
+          literalness: 8,
+        },
+        {
+          id: 48,
+          ref: "Esther 1:12",
+          original: "בִּדְבַ֣ר",
+          literal_rendering: "by the word of",
+          explanation:
+            'This is often translated as "command" or "order". The original means "word", but in this context it refers to the king\'s spoken command. Many languages may not use "word" to mean a command. Instead, they may use words that mean "order" or "instruction". This helps readers understand that the king gave a clear command, not just said something casually.',
+          exegetical_significance: 6,
+          literalness: 4,
+        },
+        {
+          id: 49,
+          ref: "Esther 1:12",
+          original: "וַיִּקְצֹ֤ף",
+          literal_rendering: "and he was angry",
+          explanation:
+            'This is often translated with stronger words like "enraged" or "furious". The original word means to be very angry. In many languages, simply saying "he was angry" might not show how strong the king\'s anger was. Using stronger words helps readers understand how upset the king became when Vashti refused to come.',
+          exegetical_significance: 7,
+          literalness: 6,
+        },
+        {
+          id: 50,
+          ref: "Esther 1:12",
+          original: "וַחֲמָתֹ֖ו בָּעֲרָ֥ה בֹֽו",
+          literal_rendering: "and his wrath burned in him",
+          explanation:
+            'This is a metaphor that compares anger to fire. Many languages translate this as "he burned with anger" or "his anger was hot". The idea is that anger is like a fire inside a person. If your language doesn\'t use this metaphor, you might say "he became very angry" or use a phrase that shows intense anger in your culture. The key is to show that the king\'s anger was very strong.',
+          exegetical_significance: 8,
+          literalness: 5,
+        },
+        {
+          id: 51,
+          ref: "Esther 1:13",
+          original: "יֹדְעֵ֣י הָֽעִתִּ֑ים",
+          literal_rendering: "knowers of the times",
+          explanation:
+            'This phrase is often translated as "wise men" or "experts". It refers to people who understand current events and can predict future trends. In many cultures, there are special words for such advisors. Translators might use a local term for royal advisors or fortune-tellers. The key idea is that these people have special knowledge that helps the king make decisions.',
+          exegetical_significance: 7,
+          literalness: 5,
+        },
+        {
+          id: 52,
+          ref: "Esther 1:13",
+          original: "דְּבַ֣ר הַמֶּ֔לֶךְ",
+          literal_rendering: "word of the king",
+          explanation:
+            'This phrase is often translated as "the king\'s procedure" or "custom". It means the way the king usually does things. In many languages, there might be a special word for royal customs or traditions. Translators should use a phrase that shows this is the king\'s normal way of acting, not just a one-time decision.',
+          exegetical_significance: 6,
+          literalness: 4,
+        },
+        {
+          id: 53,
+          ref: "Esther 1:13",
+          original: "לִפְנֵ֕י",
+          literal_rendering: "before",
+          explanation:
+            'This word is often translated as "consult" or "ask advice". It shows the king talking to his advisors before making a decision. In many languages, there might be a special word for seeking advice from important people. Translators should use a phrase that shows the king is asking for input, not just telling people what to do.',
+          exegetical_significance: 5,
+          literalness: 3,
+        },
+        {
+          id: 54,
+          ref: "Esther 1:13",
+          original: "יֹדְעֵ֖י דָּ֥ת וָדִֽין",
+          literal_rendering: "knowers of law and judgment",
+          explanation:
+            'This phrase is often translated as "experts in law and justice" or "those versed in law and custom". It refers to people who understand the rules and can make fair decisions. In many cultures, there are special words for judges or legal experts. Translators might use a local term for people who know the rules and can settle disputes fairly.',
+          exegetical_significance: 8,
+          literalness: 6,
+        },
+        {
+          id: 55,
+          ref: "Esther 1:14",
+          original: "רֹאֵי֙ פְּנֵ֣י הַמֶּ֔לֶךְ",
+          literal_rendering: "seeing the face of the king",
+          explanation:
+            'This phrase means having access to the king or being in his presence. It\'s not about literally seeing his face. In many cultures, being close to a ruler was a sign of power and privilege. Translators might use words like "had access to" or "could approach" to make the meaning clear. The idea is that these men could meet with the king directly.',
+          exegetical_significance: 7,
+          literalness: 3,
+        },
+        {
+          id: 56,
+          ref: "Esther 1:14",
+          original: "הַיֹּשְׁבִ֥ים רִאשֹׁנָ֖ה",
+          literal_rendering: "sitting first",
+          explanation:
+            'This phrase means having the highest positions or ranks. It\'s not about literally sitting first. In many cultures, where you sit shows your importance. Translators might use words like "highest in rank" or "most important" to show the meaning clearly. The idea is that these men had the top positions in the kingdom.',
+          exegetical_significance: 8,
+          literalness: 2,
+        },
+        {
+          id: 57,
+          ref: "Esther 1:15",
+          original: "כְּדָת֙",
+          literal_rendering: "according to law",
+          explanation:
+            'This phrase is often translated as "according to law" or "by law". It means "what does the law say about this". The translators should keep the idea of following rules or laws. They should not use words that mean "custom" or "tradition". The phrase is about official rules, not just habits. This is important because it shows the king is trying to follow proper procedures.',
+          exegetical_significance: 7,
+          literalness: 9,
+        },
+        {
+          id: 58,
+          ref: "Esther 1:15",
+          original: "מַֽה־לַּעֲשֹׂ֔ות",
+          literal_rendering: "what to do",
+          explanation:
+            'This phrase asks "what should be done". Some translations make it clearer by saying "how should we treat" or "what punishment". The translators should think about how their language asks about consequences for actions. They might need to add words to make the meaning clear. This is important because it shows the king is looking for a specific action to take.',
+          exegetical_significance: 6,
+          literalness: 7,
+        },
+        {
+          id: 59,
+          ref: "Esther 1:15",
+          original: "בְּיַ֖ד",
+          literal_rendering: "by the hand of",
+          explanation:
+            'This phrase means "through" or "by means of". It doesn\'t mean the eunuchs used their actual hands. In many languages, "hand" is used to mean "by the action of". Translators should use a phrase that means "through" or "by means of" in their language. This shows how the command was sent, which is part of the formal process being described.',
+          exegetical_significance: 5,
+          literalness: 3,
+        },
+        {
+          id: 60,
+          ref: "Esther 1:16",
+          original: "לִפְנֵ֤י",
+          literal_rendering: "before the face of",
+          explanation:
+            'This word is often translated as "in the presence of" or simply "before." It literally means "to the face of." In many languages, being in someone\'s presence is described as being in front of their face. This shows respect and attention. Translators may choose a non-literal phrase that means "in the presence of" in their language. This could be "in front of," "before the eyes of," or another phrase that shows Memucan was speaking directly to the king and officials.',
+          exegetical_significance: 3,
+          literalness: 5,
+        },
+        {
+          id: 61,
+          ref: "Esther 1:16",
+          original: "עָוְתָ֖ה",
+          literal_rendering: "she has done wrong",
+          explanation:
+            'This word means "to act wrongly" or "to do evil." Some translations use words like "offended," "wronged," or "done wrong." The basic idea is that Queen Vashti did something bad or improper. Translators should choose a word or phrase in their language that means to do something wrong, especially against authority. They might say "disobeyed," "rebelled," or "acted badly," depending on what sounds natural and clear in their language.',
+          exegetical_significance: 7,
+          literalness: 8,
+        },
+        {
+          id: 62,
+          ref: "Esther 1:16",
+          original: "כִּ֤י עַל־כָּל־הַשָּׂרִים֙",
+          literal_rendering: "but against all the officials",
+          explanation:
+            'This phrase shows that Vashti\'s action affected more than just the king. The word "but" here means "also" or "in addition to." It expands the scope of her wrongdoing. Translators should make it clear that Vashti\'s action had wider effects. They might say "not only... but also" or use another structure that shows addition or expansion in their language. The key is to show that the problem goes beyond just the king.',
+          exegetical_significance: 8,
+          literalness: 7,
+        },
+        {
+          id: 63,
+          ref: "Esther 1:17",
+          original: "יֵצֵ֤א",
+          literal_rendering: "go out",
+          explanation:
+            'This word is often translated as "spread" or "become known" in this verse. The idea is that news or information spreads out from a source, like water flowing out. Translators might use words in their language that mean "spread" or "become known" to make the meaning clear. The original uses the idea of something physically going out to mean information spreading.',
+          exegetical_significance: 7,
+          literalness: 4,
+        },
+        {
+          id: 64,
+          ref: "Esther 1:17",
+          original: "לְהַבְזֹ֥ות",
+          literal_rendering: "to despise",
+          explanation:
+            'This word is often translated as "look with contempt" or "disrespect". It means to think of someone as worthless or unimportant. Translators might use words or phrases in their language that mean to look down on someone or not respect them. The original uses the idea of seeing someone as having little value.',
+          exegetical_significance: 8,
+          literalness: 6,
+        },
+        {
+          id: 65,
+          ref: "Esther 1:17",
+          original: "בְּעֵינֵיהֶ֑ן",
+          literal_rendering: "in their eyes",
+          explanation:
+            'This phrase is often not translated literally. It means "in their opinion" or "in their view". Many languages use eyes to talk about how people see or think about things. Translators might use words in their language that mean "in their thinking" or "in their opinion" to make the meaning clear.',
+          exegetical_significance: 5,
+          literalness: 3,
+        },
+        {
+          id: 66,
+          ref: "Esther 1:18",
+          original: "וּכְדַ֖י",
+          literal_rendering: "and as sufficiency",
+          explanation:
+            'This word is often translated as "plenty" or "no end." It means "enough" or "sufficient." In this context, it suggests there will be more than enough contempt and anger. Translators may choose a non-literal rendering to convey the idea of abundance or excess in their language. They could use words or phrases that mean "a lot" or "too much" to capture the sense of the original.',
+          exegetical_significance: 6,
+          literalness: 3,
+        },
+        {
+          id: 67,
+          ref: "Esther 1:18",
+          original: "בִּזָּיֹ֥ון",
+          literal_rendering: "contempt",
+          explanation:
+            'This word means "contempt" or "disrespect." Some translations use words like "discord" or "rebellion" to show the results of the contempt. Translators should choose a word in their language that conveys strong disrespect or looking down on someone. They may need to explain that this attitude leads to problems in relationships.',
+          exegetical_significance: 7,
+          literalness: 8,
+        },
+        {
+          id: 68,
+          ref: "Esther 1:18",
+          original: "וָקָֽצֶף",
+          literal_rendering: "and wrath",
+          explanation:
+            'This word means "anger" or "wrath." It shows strong feelings. Translators should use a word in their language for very strong anger. They may need to explain that this anger comes from the situation described in the verse. Some cultures may have specific words for anger caused by disrespect or disobedience.',
+          exegetical_significance: 7,
+          literalness: 9,
+        },
+        {
+          id: 69,
+          ref: "Esther 1:19",
+          original: "יֵצֵ֤א",
+          literal_rendering: "go out",
+          explanation:
+            'This word is often translated as "issue" when talking about a decree. The idea is that the decree "goes out" from the king to the people. It\'s a common way to talk about making official announcements. Translators might use words that mean "announce" or "declare" in their language.',
+          exegetical_significance: 3,
+          literalness: 5,
+        },
+        {
+          id: 70,
+          ref: "Esther 1:19",
+          original: "דְבַר־מַלְכוּת֙",
+          literal_rendering: "word of kingdom",
+          explanation:
+            'This phrase is often translated as "royal decree" or "royal order". It means an official command from the king. In many languages, you might need to say something like "king\'s command" or "official words from the ruler" to make the meaning clear.',
+          exegetical_significance: 6,
+          literalness: 6,
+        },
+        {
+          id: 71,
+          ref: "Esther 1:19",
+          original: "מִלְּפָנָ֔יו",
+          literal_rendering: "from before him",
+          explanation:
+            'This phrase is often translated as "from him". In Hebrew, the idea of something coming "from before" someone means it comes directly from them. In many languages, you might just say "from the king" or "by the king\'s order".',
+          exegetical_significance: 2,
+          literalness: 3,
+        },
+        {
+          id: 72,
+          ref: "Esther 1:19",
+          original: "וְלֹ֣א יַעֲבֹ֑ור",
+          literal_rendering: "and not pass away",
+          explanation:
+            'This phrase is often translated as "cannot be repealed" or "cannot be changed". The idea is that the law won\'t "pass away" or stop being valid. In many languages, you might need to say something like "cannot be erased" or "will always be in effect".',
+          exegetical_significance: 7,
+          literalness: 4,
+        },
+        {
+          id: 73,
+          ref: "Esther 1:19",
+          original: "לִרְעוּתָ֖הּ",
+          literal_rendering: "to her companion",
+          explanation:
+            'This word is often translated as "to another" or "to someone else". It literally means "to her companion", but it\'s used to mean another person who will take her place. In many languages, you might need to say "to a different woman" or "to someone to replace her".',
+          exegetical_significance: 5,
+          literalness: 3,
+        },
+        {
+          id: 74,
+          ref: "Esther 1:19",
+          original: "הַטֹּובָ֥ה מִמֶּֽנָּה",
+          literal_rendering: "the good from her",
+          explanation:
+            'This phrase is often translated as "better than she" or "more worthy than she". It\'s a way of comparing two people. In many languages, you might need to say "who is more suitable" or "who will be a better queen".',
+          exegetical_significance: 8,
+          literalness: 6,
+        },
+        {
+          id: 75,
+          ref: "Esther 1:20",
+          original: "פִּתְגָ֨ם",
+          literal_rendering: "decree",
+          explanation:
+            'This word is often translated as "edict" or "decision" in English versions. It refers to an official order or proclamation from the king. Translators may choose a non-literal term that best conveys the idea of an authoritative royal command in their language. The key is to express the binding nature of this official announcement.',
+          exegetical_significance: 7,
+          literalness: 8,
+        },
+        {
+          id: 76,
+          ref: "Esther 1:20",
+          original: "רַבָּ֖ה",
+          literal_rendering: "great",
+          explanation:
+            'This word, literally meaning "great," is often translated as "vast" when referring to the kingdom. It describes the large size or extent of the Persian empire. Translators should choose a word that clearly conveys the idea of a very large area or territory, using terms that make sense in their cultural context for describing expansive regions.',
+          exegetical_significance: 6,
+          literalness: 7,
+        },
+        {
+          id: 77,
+          ref: "Esther 1:20",
+          original: "יִתְּנ֤וּ יְקָר֙",
+          literal_rendering: "give honor",
+          explanation:
+            'This phrase is often translated as "respect" or "honor." It describes the proper attitude and behavior of wives towards their husbands. Translators should choose words that express the cultural concept of showing respect and value to someone in a position of authority. The key is to convey the idea of treating someone as important or worthy of high regard.',
+          exegetical_significance: 8,
+          literalness: 9,
+        },
+        {
+          id: 78,
+          ref: "Esther 1:20",
+          original: "לְמִגָּדֹ֖ול וְעַד־קָטָֽן",
+          literal_rendering: "from great and until small",
+          explanation:
+            'This phrase is often translated as "high and low" or "from the least to the greatest." It\'s an idiom meaning "everyone" or "all people." Translators should use a phrase in their language that expresses the idea of including all social classes or ranks. The key is to convey that this applies to everyone, regardless of their status in society.',
+          exegetical_significance: 7,
+          literalness: 6,
+        },
+        {
+          id: 79,
+          ref: "Esther 1:21",
+          original: "וַיִּיטַב",
+          literal_rendering: "and it was good",
+          explanation:
+            'This word is often translated as "pleased" or "seemed appropriate." In Hebrew, something being "good in the eyes" of someone means they like it or approve of it. This is a common way to express approval in Hebrew. Translators might choose a phrase that means "liked" or "approved of" in their language instead of saying it was "good."',
+          exegetical_significance: 5,
+          literalness: 3,
+        },
+        {
+          id: 80,
+          ref: "Esther 1:21",
+          original: "בְּעֵינֵי",
+          literal_rendering: "in the eyes of",
+          explanation:
+            'This phrase is used to show how someone views or judges something. In English and many other languages, we don\'t usually talk about ideas being "in the eyes." Instead, we might say someone "liked" an idea or it "seemed good" to them. Translators should use a natural way in their language to express that someone approves of an idea.',
+          exegetical_significance: 4,
+          literalness: 2,
+        },
+        {
+          id: 81,
+          ref: "Esther 1:21",
+          original: "וַיַּעַשׂ",
+          literal_rendering: "and he did",
+          explanation:
+            'This simple phrase is often translated with more specific words like "acted," "followed," or "did as proposed." The context shows that the king is following the advice given. Translators might choose a word or phrase in their language that clearly shows the king is putting the advice into action.',
+          exegetical_significance: 6,
+          literalness: 7,
+        },
+        {
+          id: 82,
+          ref: "Esther 1:22",
+          original: "שֹׂרֵ֣ר",
+          literal_rendering: "ruling",
+          explanation:
+            'This word is often translated as "master" or "ruler" in this verse. It means someone who has power over others. The verse is saying that each man should be in charge of his own home. Translators might choose words that show authority or leadership in their language. This could be words for "boss," "chief," or "head of the family." The key idea is that the man has control in his house.',
+          exegetical_significance: 8,
+          literalness: 7,
+        },
+        {
+          id: 83,
+          ref: "Esther 1:22",
+          original: "כִּלְשֹׁ֥ון עַמֹּֽו",
+          literal_rendering: "according to the language of his people",
+          explanation:
+            'This phrase is about speaking one\'s own language. Some translations say "native tongue" or "mother tongue." It means the language a person grew up speaking. Translators should use words that mean the main language of a group. They might say "heart language" or "first language." The idea is that each man should use his own people\'s way of talking in his home.',
+          exegetical_significance: 7,
+          literalness: 8,
+        },
+        {
+          id: 84,
+          ref: "Esther 1:22",
+          original: "וַיִּשְׁלַ֤ח סְפָרִים֙",
+          literal_rendering: "and he sent writings",
+          explanation:
+            'This phrase is often translated as "he sent letters" or "dispatches." It means the king sent written messages. Translators should use words for official written communication. In some cultures, this might be "royal orders" or "king\'s messages." The key is that these were official writings sent out by the king.',
+          exegetical_significance: 6,
+          literalness: 9,
+        },
+      ];
+
+      const textContent = document.getElementById("text-content");
+      const $reference = document.getElementById("reference");
+      const $original = document.getElementById("original");
+      const $literalRendering = document.getElementById("literal-rendering");
+      const $explanation = document.getElementById("explanation");
+      const $exegeticalSignificance = document.getElementById(
+        "exegetical-significance"
+      );
+      const $literalness = document.getElementById("literalness");
+      const $importance = document.getElementById("importance-metric");
+
+      const loadNote = (index) => {
+        const row = notes[index];
+        $reference.textContent = row.ref;
+        $original.textContent = row.original;
+        $literalRendering.textContent = row.literal_rendering;
+        $explanation.textContent = row.explanation;
+        $exegeticalSignificance.textContent = row.exegetical_significance;
+        $literalness.textContent = row.literalness;
+        $importance.textContent =
+          row.exegetical_significance * (10 - row.literalness);
+      };
+      loadNote(currentNote);
+
+      let selectedRating = 0;
+
+      const ratingButtons = document.querySelectorAll(".rating-btn");
+      ratingButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          selectedRating = parseInt(btn.dataset.value);
+          ratingButtons.forEach((b) =>
+            b.classList.remove("bg-blue-500", "text-white")
+          );
+          btn.classList.add("bg-blue-500", "text-white");
+        });
+      });
+
+      document.getElementById("submit-btn").addEventListener("click", () => {
+        if (selectedRating === 0) {
+          alert("Please select a rating before submitting.");
+        } else {
+          alert(
+            `Thank you for your feedback! You selected a rating of ${selectedRating}.`
+          );
+          // Here you can add code to send the rating to a server or perform other actions
+        }
+      });
+
+      const loadAdjacentNote = (forward) => () => {
+        currentNote += forward ? 1 : -1;
+        loadNote(currentNote);
+      };
+      document
+        .getElementById("prev-button")
+        .addEventListener("click", loadAdjacentNote(false));
+      document
+        .getElementById("next-button")
+        .addEventListener("click", loadAdjacentNote(true));
+    </script>
+  </body>
+</html>
