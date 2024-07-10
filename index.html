@@ -1024,6 +1024,8 @@
 
       const loadAdjacentNote = (forward) => () => {
         currentNote += forward ? 1 : -1;
+        if (currentNote < 0) currentNote = notes.length - 1;
+        if (currentNote >= notes.length) currentNote = 0;
         loadNote(currentNote);
       };
       document
