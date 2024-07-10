@@ -1064,7 +1064,7 @@
       };
       const setVerse = async (ref) => {
         if (currentRef === ref) {
-          $bhsa.innerHTML = currentVerseText.bhsa;
+          return;
         }
 
         const verseText = await getVerseText(ref);
@@ -1113,18 +1113,25 @@
         return original;
       };
 
-      const loadNote = async (index) => {
+      const loadNote = (index) => {
         const row = notes[index];
-        await setVerse(row.ref);
         $reference.innerHTML = `<a href="https://parabible.com/${row.ref}" target="_blank">${row.ref}</a>`;
         $original.textContent = removeAccents(row.original);
         $literalRendering.textContent = row.literal_rendering;
 
-        $bsb.innerHTML = currentVerseText.bsb;
-        $bhsa.innerHTML = getHighlightedHebrewText(
-          row.original,
-          currentVerseText.bhsa
-        );
+        $bsb.innerHTML =
+          currentRef === row.ref ? currentVerseText.bsb : "Loading...";
+        $bhsa.innerHTML =
+          currentRef === row.ref
+            ? getHighlightedHebrewText(row.original, currentVerseText.bhsa)
+            : "Loading...";
+        setVerse(row.ref).then((_) => {
+          $bsb.innerHTML = currentVerseText.bsb;
+          $bhsa.innerHTML = getHighlightedHebrewText(
+            row.original,
+            currentVerseText.bhsa
+          );
+        });
 
         $explanation.textContent = row.explanation;
         $exegeticalSignificance.textContent = row.exegetical_significance;
