@@ -3,18 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="preload"
+      href="https://parabible.com/fonts/sbl_blit-webfont.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="stylesheet"
+      href="https://parabible.com/fonts/fonts.css"
+      type="text/css"
+      charset="utf-8"
+    />
     <title>Feedback Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/css">
-      #original {
+      .original {
         font-family: SBL Biblit;
+        font-size: 1.4em;
+        direction: rtl;
+      }
+      .highlight {
+        background-color: #fef3c7;
       }
     </style>
   </head>
   <body class="bg-gray-100 min-h-screen flex flex-col items-center">
     <div
       id="content"
-      class="bg-white mt-44 p-8 rounded-lg shadow-md max-w-lg w-full"
+      class="bg-white mt-32 p-8 rounded-lg shadow-md max-w-xl w-full"
     >
       <div class="flex flex-row items-center justify-between mb-4 w-full">
         <button
@@ -77,59 +95,104 @@
           ></div>
         </div>
 
-        <div class="mb-2 flex flex-row items-center font-bold">
-          <div id="original" class="mr-6 text-2xl"></div>
-          <div id="literal-rendering" class="text-xl"></div>
+        <div class="mb-2 flex flex-row items-center font-bold text-xl">
+          <div id="original" class="mr-6 original"></div>
+          <div id="literal-rendering"></div>
+        </div>
+
+        <div id="verses" class="mb-2 pl-4 border-l-8">
+          <div id="bhsa" class="original"></div>
+          <div id="bsb"></div>
         </div>
 
         <div id="explanation"></div>
       </div>
       <div class="mb-4">
         <label for="rating" class="block text-sm font-medium text-gray-700 mb-1"
-          >Rating:</label
-        >
-        <div class="flex space-x-2">
+          >Rating: <span id="rating-text" class="font-bold"></span
+        ></label>
+        <div class="flex items-center space-x-2 mb-2">
+          <div class="flex-shrink text-red-500">
+            <!-- thumbs down -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-thumbs-down"
+            >
+              <path
+                d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"
+              ></path>
+            </svg>
+          </div>
+
           <button
-            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            class="rating-btn flex-grow py-1 bg-gray-200 rounded font-bold hover:bg-gray-400 hover:text-gray-50"
             data-value="1"
           >
             1
           </button>
           <button
-            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            class="rating-btn flex-grow py-1 bg-gray-200 rounded font-bold hover:bg-gray-400 hover:text-gray-50"
             data-value="2"
           >
             2
           </button>
           <button
-            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            class="rating-btn flex-grow py-1 bg-gray-200 rounded font-bold hover:bg-gray-400 hover:text-gray-50"
             data-value="3"
           >
             3
           </button>
           <button
-            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            class="rating-btn flex-grow py-1 bg-gray-200 rounded font-bold hover:bg-gray-400 hover:text-gray-50"
             data-value="4"
           >
             4
           </button>
           <button
-            class="rating-btn px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+            class="rating-btn flex-grow py-1 bg-gray-200 rounded font-bold hover:bg-gray-400 hover:text-gray-50"
             data-value="5"
           >
             5
           </button>
+          <div class="flex-shrink text-green-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-thumbs-up"
+            >
+              <path
+                d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"
+              ></path>
+            </svg>
+          </div>
         </div>
+        <button
+          id="submit-btn"
+          class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        >
+          Submit
+        </button>
       </div>
-      <button
-        id="submit-btn"
-        class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-      >
-        Submit
-      </button>
     </div>
 
     <script>
+      let currentRef = "";
+      let currentVerseText = {};
       let currentNote = 0;
       const notes = [
         {
@@ -978,18 +1041,91 @@
       const $reference = document.getElementById("reference");
       const $original = document.getElementById("original");
       const $literalRendering = document.getElementById("literal-rendering");
+      const $bsb = document.getElementById("bsb");
+      const $bhsa = document.getElementById("bhsa");
       const $explanation = document.getElementById("explanation");
       const $exegeticalSignificance = document.getElementById(
         "exegetical-significance"
       );
       const $literalness = document.getElementById("literalness");
       const $importance = document.getElementById("importance-metric");
+      const $ratingText = document.getElementById("rating-text");
 
-      const loadNote = (index) => {
+      const getVerseText = async (ref) => {
+        const response = await fetch(
+          `https://dev.parabible.com/api/v2/text?modules=bsb,bhsa&reference=${ref}`
+        );
+        const content = await response.json();
+        console.log(content);
+        const bsb = content[0][0].html;
+        const bhsaWords = content[0][1].wordArray;
+        const bhsa = bhsaWords.map((w) => w.text + w.trailer).join("");
+        return { bsb, bhsa };
+      };
+      const setVerse = async (ref) => {
+        if (currentRef === ref) {
+          $bhsa.innerHTML = currentVerseText.bhsa;
+        }
+
+        const verseText = await getVerseText(ref);
+        currentRef = ref;
+        currentVerseText = verseText;
+      };
+
+      const removeAccents = (x) =>
+        x.replace(/[\u0590-\u05AF\u05BD\u05C0]/g, "");
+
+      const removeVowels = (x) =>
+        x
+          .replace(/[\u0590-\u05AF\u05BD\u05C0]/g, "") // Accents
+          .replace(/[\u05B0-\u05BB]/g, "") // vowels
+          .replace(/\u05BC/g, "") // dagesh
+          .replace(/שׁ/g, "ש") // shin
+          .replace(/שׂ/g, "ש") // sin
+          .replace(/[\u05C1\u05C2]/g, ""); // sin/shin dot
+
+      const getHighlightedHebrewText = (text, original) => {
+        if (original.includes(text)) {
+          return original.replace(
+            new RegExp(text, "g"),
+            `<span class="highlight">${text}</span>`
+          );
+        }
+
+        const originalWithoutAccents = removeAccents(original);
+        const textWithoutAccents = removeAccents(text);
+        if (originalWithoutAccents.includes(textWithoutAccents)) {
+          return originalWithoutAccents.replace(
+            new RegExp(textWithoutAccents, "g"),
+            `<span class="highlight">${text}</span>`
+          );
+        }
+
+        const originalWithoutVowels = removeVowels(original);
+        const textWithoutVowels = removeVowels(text);
+        if (originalWithoutVowels.includes(textWithoutVowels)) {
+          return originalWithoutVowels.replace(
+            new RegExp(textWithoutVowels, "g"),
+            `<span class="highlight">${text}</span>`
+          );
+        }
+
+        return original;
+      };
+
+      const loadNote = async (index) => {
         const row = notes[index];
-        $reference.textContent = row.ref;
-        $original.textContent = row.original;
+        await setVerse(row.ref);
+        $reference.innerHTML = `<a href="https://parabible.com/${row.ref}" target="_blank">${row.ref}</a>`;
+        $original.textContent = removeAccents(row.original);
         $literalRendering.textContent = row.literal_rendering;
+
+        $bsb.innerHTML = currentVerseText.bsb;
+        $bhsa.innerHTML = getHighlightedHebrewText(
+          row.original,
+          currentVerseText.bhsa
+        );
+
         $explanation.textContent = row.explanation;
         $exegeticalSignificance.textContent = row.exegetical_significance;
         $literalness.textContent = row.literalness;
@@ -1000,14 +1136,24 @@
 
       let selectedRating = 0;
 
+      const ratingTexts = [
+        "I wouldn't use this",
+        "Text flagged is relevant, but note is not useful",
+        "Note has some use, but needs significant revision",
+        "Note needs some modification, but it's pretty good",
+        "Basically ready to go",
+      ];
       const ratingButtons = document.querySelectorAll(".rating-btn");
       ratingButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           selectedRating = parseInt(btn.dataset.value);
           ratingButtons.forEach((b) =>
-            b.classList.remove("bg-blue-500", "text-white")
+            b.classList.remove("bg-gray-600", "text-white")
           );
-          btn.classList.add("bg-blue-500", "text-white");
+          btn.classList.remove("bg-gray-600");
+          btn.classList.add("bg-gray-600", "text-white");
+
+          $ratingText.textContent = ratingTexts[selectedRating - 1];
         });
       });
 
