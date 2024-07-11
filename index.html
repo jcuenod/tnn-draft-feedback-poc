@@ -1148,6 +1148,554 @@
         },
       ];
 
+      const bsbEquiv = [
+        {
+          original: "וַיְהִ֖י",
+          ref: "Esther 1:1",
+          bsb: " This is what happened ",
+        },
+        { original: "בִּימֵ֣י", ref: "Esther 1:1", bsb: " in the days " },
+        {
+          original: "אֲחַשְׁוֵר֑וֹשׁ",
+          ref: "Esther 1:1",
+          bsb: " of Xerxes , ",
+        },
+        {
+          original: "הַמֹּלֵךְ֙",
+          ref: "Esther 1:1",
+          bsb: " who reigned over ",
+        },
+        { original: "שֶׁ֛בַע", ref: "Esther 1:1", bsb: "127" },
+        { original: "מְדִינָֽה׃", ref: "Esther 1:1", bsb: " provinces " },
+        { original: "מֵהֹ֣דּוּ", ref: "Esther 1:1", bsb: " from India " },
+        { original: "וְעַד־", ref: "Esther 1:1", bsb: " to " },
+        { original: "כּ֔וּשׁ", ref: "Esther 1:1", bsb: " Cush . " },
+        { original: "הָהֵ֑ם", ref: "Esther 1:2", bsb: " In those " },
+        { original: "בַּיָּמִ֖ים", ref: "Esther 1:2", bsb: " days " },
+        { original: "הַמֶּ֣לֶךְ", ref: "Esther 1:2", bsb: " King " },
+        { original: "אֲחַשְׁוֵר֗וֹשׁ", ref: "Esther 1:2", bsb: " Xerxes " },
+        { original: "כְּשֶׁ֣בֶת׀", ref: "Esther 1:2", bsb: " sat " },
+        { original: "עַ֚ל", ref: "Esther 1:2", bsb: " on " },
+        { original: "מַלְכוּת֔וֹ", ref: "Esther 1:2", bsb: " his royal " },
+        { original: "אֲשֶׁ֖ר", ref: "Esther 1:2", bsb: " - " },
+        { original: "כִּסֵּ֣א", ref: "Esther 1:2", bsb: " throne " },
+        { original: "הַבִּירָֽה׃", ref: "Esther 1:2", bsb: " in the citadel " },
+        { original: "בְּשׁוּשַׁ֥ן", ref: "Esther 1:2", bsb: " of Susa . " },
+        { original: "שָׁלוֹשׁ֙", ref: "Esther 1:3", bsb: " In the third " },
+        { original: "בִּשְׁנַ֤ת", ref: "Esther 1:3", bsb: " year " },
+        { original: "לְמָלְכ֔וֹ", ref: "Esther 1:3", bsb: " of his reign , " },
+        { original: "עָשָׂ֣ה", ref: "Esther 1:3", bsb: " [Xerxes] held " },
+        { original: "מִשְׁתֶּ֔ה", ref: "Esther 1:3", bsb: " a feast " },
+        { original: "לְכָל־", ref: "Esther 1:3", bsb: " for all " },
+        { original: "שָׂרָ֖יו", ref: "Esther 1:3", bsb: " his officials " },
+        { original: "וַעֲבָדָ֑יו", ref: "Esther 1:3", bsb: " and servants . " },
+        {
+          original: "חֵ֣יל׀",
+          ref: "Esther 1:3",
+          bsb: " The military leaders ",
+        },
+        { original: "פָּרַ֣ס", ref: "Esther 1:3", bsb: " of Persia " },
+        { original: "וּמָדַ֗י", ref: "Esther 1:3", bsb: " and Media " },
+        { original: "לְפָנָֽיו׃", ref: "Esther 1:3", bsb: " [were there] , " },
+        {
+          original: "הַֽפַּרְתְּמִ֛ים",
+          ref: "Esther 1:3",
+          bsb: " along with the nobles ",
+        },
+        { original: "וְשָׂרֵ֥י", ref: "Esther 1:3", bsb: " and princes " },
+        {
+          original: "הַמְּדִינ֖וֹת",
+          ref: "Esther 1:3",
+          bsb: " of the provinces . ",
+        },
+        { original: "רַבִּ֔ים", ref: "Esther 1:4", bsb: " And for a full " },
+        { original: "שְׁמוֹנִ֥ים", ref: "Esther 1:4", bsb: "180" },
+        { original: "יָמִ֣ים", ref: "Esther 1:4", bsb: " days " },
+        { original: "בְּהַרְאֹת֗וֹ", ref: "Esther 1:4", bsb: " he displayed " },
+        { original: "אֶת־", ref: "Esther 1:4", bsb: " - " },
+        { original: "כְּב֣וֹד", ref: "Esther 1:4", bsb: " the glorious " },
+        { original: "עֹ֙שֶׁר֙", ref: "Esther 1:4", bsb: " riches " },
+        { original: "מַלְכוּת֔וֹ", ref: "Esther 1:4", bsb: " of his kingdom " },
+        { original: "וְאֶ֨ת־", ref: "Esther 1:4", bsb: " and " },
+        {
+          original: "תִּפְאֶ֖רֶת",
+          ref: "Esther 1:4",
+          bsb: " the magnificent ",
+        },
+        { original: "יְקָ֔ר", ref: "Esther 1:4", bsb: " splendor " },
+        {
+          original: "גְּדוּלָּת֑וֹ",
+          ref: "Esther 1:4",
+          bsb: " of his greatness . ",
+        },
+        { original: "וּבִמְל֣וֹאת׀", ref: "Esther 1:5", bsb: " At the end " },
+        { original: "הָאֵ֗לֶּה", ref: "Esther 1:5", bsb: " of this " },
+        { original: "הַיָּמִ֣ים", ref: "Esther 1:5", bsb: " time , " },
+        { original: "גִּנַּ֥ת", ref: "Esther 1:5", bsb: " in the garden " },
+        { original: "בַּחֲצַ֕ר", ref: "Esther 1:5", bsb: " court " },
+        { original: "הַמֶּֽלֶךְ׃", ref: "Esther 1:5", bsb: " of the royal " },
+        { original: "בִּיתַ֖ן", ref: "Esther 1:5", bsb: " palace , " },
+        { original: "הַמֶּ֡לֶךְ", ref: "Esther 1:5", bsb: " the king " },
+        { original: "עָשָׂ֣ה", ref: "Esther 1:5", bsb: " held " },
+        { original: "שִׁבְעַ֣ת", ref: "Esther 1:5", bsb: " a seven-day " },
+        { original: "מִשְׁתֶּ֖ה", ref: "Esther 1:5", bsb: " feast " },
+        { original: "לְכָל־", ref: "Esther 1:5", bsb: " for all " },
+        { original: "הָעָ֣ם", ref: "Esther 1:5", bsb: " the people " },
+        { original: "הַנִּמְצְאִים֩", ref: "Esther 1:5", bsb: " - " },
+        { original: "הַבִּירָ֜ה", ref: "Esther 1:5", bsb: " in the citadel " },
+        { original: "בְּשׁוּשַׁ֨ן", ref: "Esther 1:5", bsb: " of Susa , " },
+        { original: "קָטָ֛ן", ref: "Esther 1:5", bsb: " from the least " },
+        { original: "וְעַד־", ref: "Esther 1:5", bsb: " to " },
+        {
+          original: "לְמִגָּ֧דוֹל",
+          ref: "Esther 1:5",
+          bsb: " the greatest . ",
+        },
+        { original: "ח֣וּר׀", ref: "Esther 1:6", bsb: " [Hangings of] white " },
+        { original: "וּתְכֵ֗לֶת", ref: "Esther 1:6", bsb: " and blue " },
+        { original: "כַּרְפַּ֣ס", ref: "Esther 1:6", bsb: " linen " },
+        { original: "אָחוּז֙", ref: "Esther 1:6", bsb: " were fastened " },
+        { original: "בְּחַבְלֵי־", ref: "Esther 1:6", bsb: " with cords " },
+        { original: "ב֣וּץ", ref: "Esther 1:6", bsb: " of fine white " },
+        {
+          original: "וְאַרְגָּמָ֔ן",
+          ref: "Esther 1:6",
+          bsb: " and purple [material] ",
+        },
+        { original: "עַל־", ref: "Esther 1:6", bsb: " to " },
+        { original: "כֶ֖סֶף", ref: "Esther 1:6", bsb: " silver " },
+        { original: "גְּלִ֥ילֵי", ref: "Esther 1:6", bsb: " rings " },
+        { original: "שֵׁ֑שׁ", ref: "Esther 1:6", bsb: " on the marble " },
+        { original: "וְעַמּ֣וּדֵי", ref: "Esther 1:6", bsb: " pillars . " },
+        { original: "זָהָ֣ב", ref: "Esther 1:6", bsb: " Gold " },
+        { original: "וָכֶ֗סֶף", ref: "Esther 1:6", bsb: " and silver " },
+        { original: "מִטּ֣וֹת׀", ref: "Esther 1:6", bsb: " couches " },
+        { original: "עַ֛ל", ref: "Esther 1:6", bsb: " were arranged " },
+        {
+          original: "רִֽצְפַ֥ת",
+          ref: "Esther 1:6",
+          bsb: " on a mosaic pavement ",
+        },
+        { original: "בַּהַט־", ref: "Esther 1:6", bsb: " of porphyry , " },
+        { original: "וָשֵׁ֖שׁ", ref: "Esther 1:6", bsb: " marble , " },
+        { original: "וְדַ֥ר", ref: "Esther 1:6", bsb: " mother-of-pearl , " },
+        {
+          original: "וְסֹחָֽרֶת׃",
+          ref: "Esther 1:6",
+          bsb: " and other costly stones . ",
+        },
+        {
+          original: "וְהַשְׁקוֹת֙",
+          ref: "Esther 1:7",
+          bsb: " Beverages were served ",
+        },
+        {
+          original: "בִּכְלֵ֣י",
+          ref: "Esther 1:7",
+          bsb: " in an array of goblets ",
+        },
+        { original: "זָהָ֔ב", ref: "Esther 1:7", bsb: " of gold , " },
+        { original: "וְכֵלִ֖ים", ref: "Esther 1:7", bsb: " each " },
+        {
+          original: "שׁוֹנִ֑ים",
+          ref: "Esther 1:7",
+          bsb: " with a different design , ",
+        },
+        { original: "מַלְכ֛וּת", ref: "Esther 1:7", bsb: " and the royal " },
+        { original: "וְיֵ֥ין", ref: "Esther 1:7", bsb: " wine " },
+        { original: "רָ֖ב", ref: "Esther 1:7", bsb: " flowed freely , " },
+        {
+          original: "הַמֶּֽלֶךְ׃",
+          ref: "Esther 1:7",
+          bsb: " according to the king’s ",
+        },
+        { original: "כְּיַ֥ד", ref: "Esther 1:7", bsb: " bounty . " },
+        { original: "כַדָּ֖ת", ref: "Esther 1:8", bsb: " By " },
+        { original: "יִסַּ֣ד", ref: "Esther 1:8", bsb: " order " },
+        { original: "הַמֶּ֗לֶךְ", ref: "Esther 1:8", bsb: " of the king , " },
+        { original: "אֵ֣ין", ref: "Esther 1:8", bsb: " no " },
+        { original: "אֹנֵ֑ס", ref: "Esther 1:8", bsb: " limit was placed " },
+        { original: "כִּי־", ref: "Esther 1:8", bsb: " " },
+        { original: "כֵ֣ן׀", ref: "Esther 1:8", bsb: " " },
+        {
+          original: "וְהַשְּׁתִיָּ֥ה",
+          ref: "Esther 1:8",
+          bsb: " on the drinking , ",
+        },
+        { original: "כָּל־", ref: "Esther 1:8", bsb: " and every " },
+        { original: "רַ֣ב", ref: "Esther 1:8", bsb: " official " },
+        { original: "בֵּית֔וֹ", ref: "Esther 1:8", bsb: " of his household " },
+        { original: "לַעֲשׂ֖וֹת", ref: "Esther 1:8", bsb: " was to serve " },
+        { original: "אִישׁ־", ref: "Esther 1:8", bsb: " each " },
+        { original: "וָאִֽישׁ׃", ref: "Esther 1:8", bsb: " man " },
+        {
+          original: "כִּרְצ֥וֹן",
+          ref: "Esther 1:8",
+          bsb: " whatever he desired . ",
+        },
+        { original: "הַמַּלְכָּ֔ה", ref: "Esther 1:9", bsb: " Queen " },
+        { original: "וַשְׁתִּ֣י", ref: "Esther 1:9", bsb: " Vashti " },
+        { original: "גַּ֚ם", ref: "Esther 1:9", bsb: " also " },
+        { original: "עָשְׂתָ֖ה", ref: "Esther 1:9", bsb: " gave " },
+        { original: "מִשְׁתֵּ֣ה", ref: "Esther 1:9", bsb: " a banquet " },
+        { original: "נָשִׁ֑ים", ref: "Esther 1:9", bsb: " for the women " },
+        { original: "הַמַּלְכ֔וּת", ref: "Esther 1:9", bsb: " in the royal " },
+        { original: "בֵּ֚ית", ref: "Esther 1:9", bsb: " palace " },
+        { original: "אֲשֶׁ֖ר", ref: "Esther 1:9", bsb: " - " },
+        { original: "לַמֶּ֥לֶךְ", ref: "Esther 1:9", bsb: " of King " },
+        { original: "אֲחַשְׁוֵרֽוֹשׁ׃ס", ref: "Esther 1:9", bsb: " Xerxes . " },
+        {
+          original: "הַשְּׁבִיעִ֔י",
+          ref: "Esther 1:10",
+          bsb: " On the seventh ",
+        },
+        { original: "בַּיּוֹם֙", ref: "Esther 1:10", bsb: " day , " },
+        {
+          original: "הַמֶּ֖לֶךְ",
+          ref: "Esther 1:10",
+          bsb: " when the king’s ",
+        },
+        { original: "לֵב־", ref: "Esther 1:10", bsb: " heart " },
+        { original: "כְּט֥וֹב", ref: "Esther 1:10", bsb: " was merry " },
+        { original: "בַּיָּ֑יִן", ref: "Esther 1:10", bsb: " with wine , " },
+        { original: "אָמַ֡ר", ref: "Esther 1:10", bsb: " he ordered " },
+        { original: "שִׁבְעַת֙", ref: "Esther 1:10", bsb: " the seven " },
+        { original: "הַסָּ֣רִיסִ֔ים", ref: "Esther 1:10", bsb: " eunuchs " },
+        {
+          original: "הַמְשָׁ֣רְתִ֔ים",
+          ref: "Esther 1:10",
+          bsb: " who served ",
+        },
+        { original: "אֲחַשְׁוֵרֽוֹשׁ׃", ref: "Esther 1:10", bsb: " him — " },
+        { original: "לִ֠מְהוּמָן", ref: "Esther 1:10", bsb: " Mehuman , " },
+        { original: "בִּזְּתָ֨א", ref: "Esther 1:10", bsb: " Biztha , " },
+        { original: "חַרְבוֹנָ֜א", ref: "Esther 1:10", bsb: " Harbona , " },
+        { original: "בִּגְתָ֤א", ref: "Esther 1:10", bsb: " Bigtha , " },
+        { original: "וַאֲבַגְתָא֙", ref: "Esther 1:10", bsb: " Abagtha , " },
+        { original: "זֵתַ֣ר", ref: "Esther 1:10", bsb: " Zethar , " },
+        { original: "וְכַרְכַּ֔ס", ref: "Esther 1:10", bsb: " and Carkas — " },
+        { original: "לְ֠הָבִיא", ref: "Esther 1:11", bsb: " to bring " },
+        { original: "אֶת־", ref: "Esther 1:11", bsb: " - " },
+        { original: "הַמַּלְכָּ֛ה", ref: "Esther 1:11", bsb: " Queen " },
+        { original: "וַשְׁתִּ֧י", ref: "Esther 1:11", bsb: " Vashti " },
+        { original: "לִפְנֵ֥י", ref: "Esther 1:11", bsb: " before " },
+        { original: "הַמֶּ֖לֶךְ", ref: "Esther 1:11", bsb: " him , " },
+        {
+          original: "מַלְכ֑וּת",
+          ref: "Esther 1:11",
+          bsb: " [wearing] her royal ",
+        },
+        { original: "בְּכֶ֣תֶר", ref: "Esther 1:11", bsb: " crown , " },
+        { original: "לְהַרְא֨וֹת", ref: "Esther 1:11", bsb: " to display " },
+        { original: "יָפְיָ֔הּ", ref: "Esther 1:11", bsb: " her beauty " },
+        { original: "הָֽעַמִּ֤ים", ref: "Esther 1:11", bsb: " to the people " },
+        {
+          original: "וְהַשָּׂרִים֙",
+          ref: "Esther 1:11",
+          bsb: " and officials . ",
+        },
+        { original: "אֶת־", ref: "Esther 1:11", bsb: " - " },
+        { original: "כִּֽי־", ref: "Esther 1:11", bsb: " For " },
+        { original: "הִֽיא׃", ref: "Esther 1:11", bsb: " she [was] " },
+        { original: "טוֹבַ֥ת", ref: "Esther 1:11", bsb: " beautiful " },
+        { original: "מַרְאֶ֖ה", ref: "Esther 1:11", bsb: " to behold . " },
+        { original: "הַמַּלְכָּ֣ה", ref: "Esther 1:12", bsb: " Queen " },
+        {
+          original: "וַשְׁתִּ֗י",
+          ref: "Esther 1:12",
+          bsb: " Vashti, however , ",
+        },
+        { original: "וַתְּמָאֵ֞ן", ref: "Esther 1:12", bsb: " refused " },
+        { original: "לָבוֹא֙", ref: "Esther 1:12", bsb: " to come " },
+        { original: "הַמֶּ֔לֶךְ", ref: "Esther 1:12", bsb: " at the king’s " },
+        { original: "בִּדְבַ֣ר", ref: "Esther 1:12", bsb: " command " },
+        { original: "אֲשֶׁ֖ר", ref: "Esther 1:12", bsb: " - " },
+        { original: "בְּיַ֣ד", ref: "Esther 1:12", bsb: " [brought] by " },
+        {
+          original: "הַסָּרִיסִ֑ים",
+          ref: "Esther 1:12",
+          bsb: " [his] eunuchs . ",
+        },
+        { original: "הַמֶּ֙לֶךְ֙", ref: "Esther 1:12", bsb: " And the king " },
+        {
+          original: "וַיִּקְצֹ֤ף",
+          ref: "Esther 1:12",
+          bsb: " became furious ",
+        },
+        { original: "מְאֹ֔ד", ref: "Esther 1:12", bsb: " . . . , " },
+        { original: "וַחֲמָת֖וֹ", ref: "Esther 1:12", bsb: " and his anger " },
+        { original: "בָּעֲרָ֥ה", ref: "Esther 1:12", bsb: " burned " },
+        { original: "בֽוֹ׃", ref: "Esther 1:12", bsb: " within him . " },
+        { original: "הַמֶּ֔לֶךְ", ref: "Esther 1:13", bsb: " Then the king " },
+        { original: "וַיֹּ֣אמֶר", ref: "Esther 1:13", bsb: " consulted " },
+        { original: "לַחֲכָמִ֖ים", ref: "Esther 1:13", bsb: " the wise men " },
+        { original: "יֹדְעֵ֣י", ref: "Esther 1:13", bsb: " who knew " },
+        { original: "הָֽעִתִּ֑ים", ref: "Esther 1:13", bsb: " the times , " },
+        { original: "כִּי־", ref: "Esther 1:13", bsb: " for it was " },
+        { original: "כֵן֙", ref: "Esther 1:13", bsb: " customary " },
+        { original: "הַמֶּ֔לֶךְ", ref: "Esther 1:13", bsb: " for him " },
+        { original: "דְּבַ֣ר", ref: "Esther 1:13", bsb: " to confer " },
+        { original: "לִפְנֵ֕י", ref: "Esther 1:13", bsb: " with " },
+        { original: "יֹדְעֵ֖י", ref: "Esther 1:13", bsb: " the experts " },
+        { original: "דָּ֥ת", ref: "Esther 1:13", bsb: " in law " },
+        { original: "וָדִֽין׃", ref: "Esther 1:13", bsb: " and justice . " },
+        {
+          original: "וְהַקָּרֹ֣ב",
+          ref: "Esther 1:14",
+          bsb: " His closest advisors [were] ",
+        },
+        { original: "אֵלָ֗יו", ref: "Esther 1:14", bsb: " " },
+        { original: "כַּרְשְׁנָ֤א", ref: "Esther 1:14", bsb: " Carshena , " },
+        { original: "שֵׁתָר֙", ref: "Esther 1:14", bsb: " Shethar , " },
+        { original: "אַדְמָ֣תָא", ref: "Esther 1:14", bsb: " Admatha , " },
+        { original: "תַרְשִׁ֔ישׁ", ref: "Esther 1:14", bsb: " Tarshish , " },
+        { original: "מֶ֥רֶס", ref: "Esther 1:14", bsb: " Meres , " },
+        { original: "מַרְסְנָ֖א", ref: "Esther 1:14", bsb: " Marsena , " },
+        { original: "מְמוּכָ֑ן", ref: "Esther 1:14", bsb: " and Memucan , " },
+        { original: "שִׁבְעַ֞ת", ref: "Esther 1:14", bsb: " the seven " },
+        { original: "שָׂרֵ֣י׀", ref: "Esther 1:14", bsb: " princes " },
+        { original: "פָּרַ֣ס", ref: "Esther 1:14", bsb: " of Persia " },
+        { original: "וּמָדַ֗י", ref: "Esther 1:14", bsb: " and Media " },
+        {
+          original: "רֹאֵי֙",
+          ref: "Esther 1:14",
+          bsb: " who had personal access to ",
+        },
+        { original: "הַמֶּ֔לֶךְ", ref: "Esther 1:14", bsb: " the king " },
+        {
+          original: "הַיֹּשְׁבִ֥ים",
+          ref: "Esther 1:14",
+          bsb: " [and] ranked ",
+        },
+        { original: "רִאשֹׁנָ֖ה", ref: "Esther 1:14", bsb: " highest " },
+        {
+          original: "בַּמַּלְכֽוּת׃",
+          ref: "Esther 1:14",
+          bsb: " in the kingdom . ",
+        },
+        {
+          original: "כְּדָת֙",
+          ref: "Esther 1:15",
+          bsb: " “ According to law , ” ",
+        },
+        { original: "מַֽה־", ref: "Esther 1:15", bsb: " he asked, “what " },
+        {
+          original: "לַּעֲשׂ֔וֹת",
+          ref: "Esther 1:15",
+          bsb: " should be done ",
+        },
+        { original: "בַּמַּלְכָּ֖ה", ref: "Esther 1:15", bsb: " with Queen " },
+        { original: "וַשְׁתִּ֑י", ref: "Esther 1:15", bsb: " Vashti , " },
+        { original: "עַ֣ל׀", ref: "Esther 1:15", bsb: " since " },
+        { original: "אֲשֶׁ֣ר", ref: "Esther 1:15", bsb: " - " },
+        { original: "לֹֽא־", ref: "Esther 1:15", bsb: " she refused to obey " },
+        { original: "אֶֽת־", ref: "Esther 1:15", bsb: " - " },
+        { original: "מַאֲמַר֙", ref: "Esther 1:15", bsb: " the command " },
+        { original: "הַמֶּ֣לֶךְ", ref: "Esther 1:15", bsb: " of King " },
+        { original: "אֲחַשְׁוֵר֔וֹשׁ", ref: "Esther 1:15", bsb: " Xerxes " },
+        { original: "בְּיַ֖ד", ref: "Esther 1:15", bsb: " delivered by " },
+        {
+          original: "הַסָּרִיסִֽים׃ס",
+          ref: "Esther 1:15",
+          bsb: " the eunuchs ? ” ",
+        },
+        {
+          original: "לִפְנֵ֤י",
+          ref: "Esther 1:16",
+          bsb: " And in the presence ",
+        },
+        { original: "הַמֶּ֙לֶךְ֙", ref: "Esther 1:16", bsb: " of the king " },
+        {
+          original: "וְהַשָּׂרִ֔ים",
+          ref: "Esther 1:16",
+          bsb: " and his princes , ",
+        },
+        { original: "מוּמְכָן", ref: "Esther 1:16", bsb: " Memucan " },
+        { original: "וַיֹּ֣אמֶר", ref: "Esther 1:16", bsb: " replied , " },
+        { original: "הַמַּלְכָּ֑ה", ref: "Esther 1:16", bsb: " “ Queen " },
+        { original: "וַשְׁתִּ֣י", ref: "Esther 1:16", bsb: " Vashti " },
+        { original: "עָוְתָ֖ה", ref: "Esther 1:16", bsb: " has wronged " },
+        { original: "לֹ֤א", ref: "Esther 1:16", bsb: " not " },
+        { original: "לְבַדּ֔וֹ", ref: "Esther 1:16", bsb: " only " },
+        { original: "הַמֶּ֙לֶךְ֙", ref: "Esther 1:16", bsb: " the king , " },
+        { original: "כִּ֤י", ref: "Esther 1:16", bsb: " but " },
+        { original: "כָּל־", ref: "Esther 1:16", bsb: " all " },
+        { original: "הַשָּׂרִים֙", ref: "Esther 1:16", bsb: " the princes " },
+        {
+          original: "הָ֣עַמִּ֔ים",
+          ref: "Esther 1:16",
+          bsb: " and the peoples ",
+        },
+        { original: "אֲשֶׁ֕ר", ref: "Esther 1:16", bsb: " - " },
+        { original: "בְּכָל־", ref: "Esther 1:16", bsb: " - " },
+        { original: "כָּל־", ref: "Esther 1:16", bsb: " in all " },
+        { original: "מְדִינ֖וֹת", ref: "Esther 1:16", bsb: " the provinces " },
+        { original: "הַמֶּ֥לֶךְ", ref: "Esther 1:16", bsb: " of King " },
+        { original: "אֲחַשְׁוֵרֽוֹשׁ׃", ref: "Esther 1:16", bsb: " Xerxes . " },
+        { original: "כִּֽי־", ref: "Esther 1:17", bsb: " For " },
+        { original: "דְבַר־", ref: "Esther 1:17", bsb: " the conduct " },
+        { original: "הַמַּלְכָּה֙", ref: "Esther 1:17", bsb: " of the queen " },
+        { original: "יֵצֵ֤א", ref: "Esther 1:17", bsb: " will become known " },
+        { original: "עַל־", ref: "Esther 1:17", bsb: " to " },
+        { original: "כָּל־", ref: "Esther 1:17", bsb: " all " },
+        { original: "הַנָּשִׁ֔ים", ref: "Esther 1:17", bsb: " women , " },
+        {
+          original: "לְהַבְז֥וֹת",
+          ref: "Esther 1:17",
+          bsb: " causing them to despise ",
+        },
+        {
+          original: "בַּעְלֵיהֶ֖ן",
+          ref: "Esther 1:17",
+          bsb: " their husbands ",
+        },
+        { original: "בְּאָמְרָ֗ם", ref: "Esther 1:17", bsb: " and say , " },
+        { original: "הַמֶּ֣לֶךְ", ref: "Esther 1:17", bsb: " ‘ King " },
+        { original: "אֲחַשְׁוֵר֡וֹשׁ", ref: "Esther 1:17", bsb: " Xerxes " },
+        { original: "אָמַ֞ר", ref: "Esther 1:17", bsb: " ordered " },
+        { original: "הַמַּלְכָּ֛ה", ref: "Esther 1:17", bsb: " Queen " },
+        { original: "וַשְׁתִּ֧י", ref: "Esther 1:17", bsb: " Vashti " },
+        { original: "לְהָבִ֨יא", ref: "Esther 1:17", bsb: " to be brought " },
+        { original: "אֶת־", ref: "Esther 1:17", bsb: " - " },
+        { original: "לְפָנָ֖יו", ref: "Esther 1:17", bsb: " before him , " },
+        { original: "וְלֹא־", ref: "Esther 1:17", bsb: " but she did not " },
+        { original: "בָֽאָה׃", ref: "Esther 1:17", bsb: " come . ’ " },
+        { original: "הַזֶּ֜ה", ref: "Esther 1:18", bsb: " This " },
+        { original: "וְֽהַיּ֨וֹם", ref: "Esther 1:18", bsb: " very day " },
+        { original: "שָׂר֣וֹת", ref: "Esther 1:18", bsb: " the noble women " },
+        { original: "פָּֽרַס־", ref: "Esther 1:18", bsb: " of Persia " },
+        { original: "וּמָדַ֗י", ref: "Esther 1:18", bsb: " and Media " },
+        { original: "אֲשֶׁ֤ר", ref: "Esther 1:18", bsb: " who " },
+        { original: "שָֽׁמְעוּ֙", ref: "Esther 1:18", bsb: " have heard " },
+        { original: "אֶת־", ref: "Esther 1:18", bsb: " about " },
+        { original: "הַמַּלְכָּ֔ה", ref: "Esther 1:18", bsb: " the queen’s " },
+        { original: "דְּבַ֣ר", ref: "Esther 1:18", bsb: " conduct " },
+        { original: "תֹּאמַ֣רְנָה׀", ref: "Esther 1:18", bsb: " will say " },
+        {
+          original: "לְכֹ֖ל",
+          ref: "Esther 1:18",
+          bsb: " the same thing to all ",
+        },
+        { original: "הַמֶּ֑לֶךְ", ref: "Esther 1:18", bsb: " the king’s " },
+        { original: "שָׂרֵ֣י", ref: "Esther 1:18", bsb: " officials , " },
+        {
+          original: "וּכְדַ֖י",
+          ref: "Esther 1:18",
+          bsb: " resulting in much ",
+        },
+        { original: "בִּזָּי֥וֹן", ref: "Esther 1:18", bsb: " contempt " },
+        { original: "וָקָֽצֶף׃", ref: "Esther 1:18", bsb: " and wrath . " },
+        { original: "אִם־", ref: "Esther 1:19", bsb: " So if " },
+        { original: "ט֗וֹב", ref: "Esther 1:19", bsb: " it pleases " },
+        { original: "הַמֶּ֣לֶךְ", ref: "Esther 1:19", bsb: " the king " },
+        { original: "מִלְּפָנָ֔יו", ref: "Esther 1:19", bsb: " . . . , " },
+        { original: "יֵצֵ֤א", ref: "Esther 1:19", bsb: " let him issue " },
+        { original: "מַלְכוּת֙", ref: "Esther 1:19", bsb: " a royal " },
+        { original: "דְבַר־", ref: "Esther 1:19", bsb: " decree , " },
+        {
+          original: "וְיִכָּתֵ֛ב",
+          ref: "Esther 1:19",
+          bsb: " and let it be recorded ",
+        },
+        { original: "בְּדָתֵ֥י", ref: "Esther 1:19", bsb: " in the laws " },
+        { original: "פָֽרַס־", ref: "Esther 1:19", bsb: " of Persia " },
+        { original: "וּמָדַ֖י", ref: "Esther 1:19", bsb: " and Media " },
+        { original: "וְלֹ֣א", ref: "Esther 1:19", bsb: " so that it cannot " },
+        { original: "יַעֲב֑וֹר", ref: "Esther 1:19", bsb: " be repealed , " },
+        { original: "אֲשֶׁ֨ר", ref: "Esther 1:19", bsb: " that " },
+        { original: "וַשְׁתִּ֗י", ref: "Esther 1:19", bsb: " Vashti " },
+        { original: "לֹֽא־", ref: "Esther 1:19", bsb: " shall never again " },
+        { original: "תָב֜וֹא", ref: "Esther 1:19", bsb: " enter " },
+        { original: "לִפְנֵי֙", ref: "Esther 1:19", bsb: " the presence " },
+        { original: "הַמֶּ֣לֶךְ", ref: "Esther 1:19", bsb: " of King " },
+        { original: "אֲחַשְׁוֵר֔וֹשׁ", ref: "Esther 1:19", bsb: " Xerxes , " },
+        {
+          original: "וּמַלְכוּתָהּ֙",
+          ref: "Esther 1:19",
+          bsb: " and that her royal position ",
+        },
+        { original: "יִתֵּ֣ן", ref: "Esther 1:19", bsb: " shall be given " },
+        { original: "לִרְעוּתָ֖הּ", ref: "Esther 1:19", bsb: " to a woman " },
+        { original: "הַטּוֹבָ֥ה", ref: "Esther 1:19", bsb: " better " },
+        { original: "מִמֶּֽנָּה׃", ref: "Esther 1:19", bsb: " than she . " },
+        { original: "פִּתְגָ֨ם", ref: "Esther 1:20", bsb: " The edict " },
+        { original: "הַמֶּ֤לֶךְ", ref: "Esther 1:20", bsb: " the king " },
+        { original: "אֲשֶֽׁר־", ref: "Esther 1:20", bsb: " - " },
+        { original: "יַעֲשֶׂה֙", ref: "Esther 1:20", bsb: " issues " },
+        { original: "וְנִשְׁמַע֩", ref: "Esther 1:20", bsb: " will be heard " },
+        { original: "בְּכָל־", ref: "Esther 1:20", bsb: " throughout " },
+        { original: "רַבָּ֖ה", ref: "Esther 1:20", bsb: " his vast " },
+        { original: "מַלְכוּת֔וֹ", ref: "Esther 1:20", bsb: " kingdom — " },
+        { original: "כִּ֥י", ref: "Esther 1:20", bsb: " and so " },
+        { original: "וְכָל־", ref: "Esther 1:20", bsb: " all " },
+        { original: "הַנָּשִׁ֗ים", ref: "Esther 1:20", bsb: " women , " },
+        { original: "קָטָֽן׃", ref: "Esther 1:20", bsb: " from the least " },
+        { original: "וְעַד־", ref: "Esther 1:20", bsb: " to " },
+        {
+          original: "לְמִגָּד֖וֹל",
+          ref: "Esther 1:20",
+          bsb: " the greatest , ",
+        },
+        { original: "יִתְּנ֤וּ", ref: "Esther 1:20", bsb: " will honor " },
+        {
+          original: "לְבַעְלֵיהֶ֔ן",
+          ref: "Esther 1:20",
+          bsb: " their husbands . ” ",
+        },
+        { original: "הַמֶּ֖לֶךְ", ref: "Esther 1:21", bsb: " The king " },
+        {
+          original: "וְהַשָּׂרִ֑ים",
+          ref: "Esther 1:21",
+          bsb: " and his princes ",
+        },
+        { original: "וַיִּיטַב֙", ref: "Esther 1:21", bsb: " were pleased " },
+        {
+          original: "הַדָּבָ֔ר",
+          ref: "Esther 1:21",
+          bsb: " with this counsel ; ",
+        },
+        { original: "הַמֶּ֖לֶךְ", ref: "Esther 1:21", bsb: " so the king " },
+        { original: "וַיַּ֥עַשׂ", ref: "Esther 1:21", bsb: " did " },
+        { original: "מְמוּכָֽן׃", ref: "Esther 1:21", bsb: " as Memucan " },
+        { original: "כִּדְבַ֥ר", ref: "Esther 1:21", bsb: " had advised . " },
+        { original: "וַיִּשְׁלַ֤ח", ref: "Esther 1:22", bsb: " He sent " },
+        { original: "סְפָרִים֙", ref: "Esther 1:22", bsb: " letters " },
+        { original: "אֶל־", ref: "Esther 1:22", bsb: " to " },
+        { original: "כָּל־", ref: "Esther 1:22", bsb: " all " },
+        { original: "מְדִינ֣וֹת", ref: "Esther 1:22", bsb: " the provinces " },
+        {
+          original: "הַמֶּ֔לֶךְ",
+          ref: "Esther 1:22",
+          bsb: " of the kingdom , ",
+        },
+        { original: "אֶל־", ref: "Esther 1:22", bsb: " to " },
+        { original: "מְדִינָ֤ה", ref: "Esther 1:22", bsb: " each province " },
+        {
+          original: "כִּכְתָבָ֔הּ",
+          ref: "Esther 1:22",
+          bsb: " in its own script ",
+        },
+        { original: "וְאֶל־", ref: "Esther 1:22", bsb: " and to " },
+        { original: "עַ֥ם", ref: "Esther 1:22", bsb: " each people " },
+        {
+          original: "כִּלְשׁוֹנ֑וֹ",
+          ref: "Esther 1:22",
+          bsb: " in their own language , ",
+        },
+        { original: "וּמְדַבֵּ֖ר", ref: "Esther 1:22", bsb: " proclaiming " },
+        { original: "כִּלְשׁ֥וֹן", ref: "Esther 1:22", bsb: " - " },
+        { original: "עַמּֽוֹ׃פ", ref: "Esther 1:22", bsb: " - " },
+        { original: "כָּל־", ref: "Esther 1:22", bsb: " that every " },
+        { original: "אִישׁ֙", ref: "Esther 1:22", bsb: " man " },
+        { original: "לִהְי֤וֹת", ref: "Esther 1:22", bsb: " should be " },
+        { original: "שֹׂרֵ֣ר", ref: "Esther 1:22", bsb: " master " },
+        {
+          original: "בְּבֵית֔וֹ",
+          ref: "Esther 1:22",
+          bsb: " of his own household . ",
+        },
+      ];
+
       const textContent = document.getElementById("text-content");
       const $noteId = document.getElementById("note-id");
       const $noteIdInput = document.getElementById("noteIdInput");
@@ -1187,11 +1735,12 @@
       };
 
       const removeAccents = (x) =>
-        x.replace(/[\u0590-\u05AF\u05BD\u05C0]/g, "");
+        x.replace(/[\u0590-\u05AF\u05BD\u05C0]/g, "").replace(/[\u05C3־]/g, "");
 
       const removeVowels = (x) =>
         x
-          .replace(/[\u0590-\u05AF\u05BD\u05C0]/g, "") // Accents
+          .replace(/[\u0590-\u05AF\u05BD\u05C0]/g, "")
+          .replace(/[\u05C3־]/g, "") // Accents
           .replace(/[\u05B0-\u05BB]/g, "") // vowels
           .replace(/\u05BC/g, "") // dagesh
           .replace(/שׁ/g, "ש") // shin
@@ -1227,6 +1776,46 @@
         return original;
       };
 
+      const getHighlightedEnglishText = (
+        currentVerse,
+        original,
+        english_text
+      ) => {
+        // { original: "שֶׁ֛בַע", ref: "Esther 1:1", bsb: "127" },
+        const bsbEquivForVerse = bsbEquiv.filter((x) => x.ref === currentVerse);
+
+        // replace punctuation and maqqef with
+        const tokenizedOriginal = removeVowels(
+          original.replace("־", " ").trim()
+        ).split(" ");
+
+        let highglightedEnglish = english_text.normalize("NFKC");
+        const highlightedEnglish = tokenizedOriginal.map((word) => {
+          const bsbEquivForWord = bsbEquivForVerse.find((x) => {
+            // ignore everything after sof pasuq (׃)
+            const orig = x.original.normalize("NFKC").split("׃")[0];
+            console.log(removeVowels(orig), word);
+            return removeVowels(orig) === word;
+          });
+          console.log(bsbEquivForWord, word, bsbEquivForVerse);
+          if (bsbEquivForWord) {
+            const bsb = bsbEquivForWord.bsb
+              // remove english punctuation
+              .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\[\]”“]/g, " ")
+              .replace(/\s+/g, " ")
+              .trim();
+            if (!bsb.trim()) return;
+
+            console.log(bsb);
+            highglightedEnglish = highglightedEnglish.replace(
+              new RegExp(`\\b${bsb}\\b`, "g"),
+              `<span class="highlight">${bsb}</span>`
+            );
+          }
+        });
+        return highglightedEnglish;
+      };
+
       const loadNote = (noteId) => {
         const row = notes.find((note) => note.id === noteId);
         $noteId.textContent = `${row.id}`;
@@ -1235,17 +1824,27 @@
         $original.textContent = removeAccents(row.original);
         $literalRendering.textContent = row.literal_rendering;
 
-        $bsb.innerHTML =
-          currentRef === row.ref ? currentVerseText.bsb : "Loading...";
         $bhsa.innerHTML =
           currentRef === row.ref
             ? getHighlightedHebrewText(row.original, currentVerseText.bhsa)
             : "Loading...";
+        $bsb.innerHTML =
+          currentRef === row.ref
+            ? getHighlightedEnglishText(
+                currentRef,
+                row.original,
+                currentVerseText.bsb
+              )
+            : "Loading...";
         setVerse(row.ref).then((_) => {
-          $bsb.innerHTML = currentVerseText.bsb;
           $bhsa.innerHTML = getHighlightedHebrewText(
             row.original,
             currentVerseText.bhsa
+          );
+          $bsb.innerHTML = getHighlightedEnglishText(
+            currentRef,
+            row.original,
+            currentVerseText.bsb
           );
         });
 
