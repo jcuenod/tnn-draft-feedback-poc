@@ -375,11 +375,17 @@
       let currentVerseText = {};
       let currentNoteId = 1;
 
+      const validateUsername = (username) =>
+        !!username &&
+        username.length > 0 &&
+        username !== "null" &&
+        username !== "undefined";
+
       const $modal = document.getElementById("modal");
       let username = localStorage.getItem("username");
       document.getElementById("username").value = username;
       document.getElementById("usernameModal").value = username;
-      if (!username) {
+      if (!validateUsername(username)) {
         $modal.style.display = "block";
       }
 
@@ -2021,7 +2027,7 @@
         .addEventListener("click", loadAdjacentNote(true));
 
       document.addEventListener("submit", (e) => {
-        if (!username) {
+        if (!validateUsername(username)) {
           alert("Please enter your username");
           e.preventDefault();
           toggleModal(true);
