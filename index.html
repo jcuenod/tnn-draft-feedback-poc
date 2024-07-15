@@ -2001,9 +2001,15 @@
 
         if (isAlreadySubmittedFeedback(row.id)) {
           $submitBtn.disabled = true;
+          document.querySelectorAll("input[type='radio']").forEach((btn) => {
+            btn.disabled = true;
+          });
           $notAllowedNote.style.display = "block";
         } else {
           $submitBtn.disabled = false;
+          document.querySelectorAll("input[type='radio']").forEach((btn) => {
+            btn.disabled = false;
+          });
           $notAllowedNote.style.display = "none";
         }
       };
@@ -2041,6 +2047,14 @@
         .getElementById("next-button")
         .addEventListener("click", loadAdjacentNote(true));
 
+      const resetForm = () => {
+        document.querySelectorAll("input[type='radio']").forEach((btn) => {
+          btn.checked = false;
+        });
+        $ratingText.textContent = "";
+        selectedRating = 0;
+      };
+
       document.addEventListener("submit", (e) => {
         if (!validateUsername(username)) {
           alert("Please enter your username");
@@ -2048,16 +2062,21 @@
           toggleModal(true);
           return;
         }
+        if (selectedRating === 0) {
+          alert("Please select a rating");
+          e.preventDefault();
+          return;
+        }
         setTimeout(() => {
           logFeedbackForNote(parseInt($noteId.textContent));
           loadAdjacentNote(true)();
+          resetForm();
         }, 100);
       });
 
       // document.getElementById("rating-3").click(); when document is ready
       document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("rating-1").click();
-        document.getElementById("rating-3").click();
+        resetForm();
       });
     </script>
   </body>
