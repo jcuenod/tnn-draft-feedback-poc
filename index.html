@@ -408,9 +408,7 @@
         else $modal.classList.toggle("modal-hidden");
       };
 
-      if (!validateUsername(username)) {
-        toggleModal(true);
-      }
+      toggleModal(!validateUsername(username));
 
       $setNameBtn = document.getElementById("setName");
       $setNameBtn.addEventListener("click", () => {
